@@ -1,11 +1,9 @@
 var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
-var ReplacePlugin = require('webpack-plugin-replace');
 //定义了一些文件夹的路径
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'app');
-var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
-console.log(process.env.NODE_ENV)
+var BUILD_PATH = path.resolve(ROOT_PATH, 'docs');
 module.exports = {
     //项目的文件夹 可以直接用文件夹名称 默认会找index.js 也可以确定是哪个文件名字
     entry: APP_PATH,
@@ -25,7 +23,7 @@ module.exports = {
         'react-dom': 'ReactDOM'
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.json'],
         alias: {
         //   'vue$': 'vue/dist/vue.esm.js',
           '@': path.resolve(__dirname, 'app')
@@ -46,8 +44,8 @@ module.exports = {
     //添加我们的插件 会自动生成一个html文件
     plugins: [
         new HtmlwebpackPlugin({
-            title: 'Hello World app',
-            template: 'index.html',
+            title: 'Hello React Starter',
+            template: 'public/index.html',
             cdn: `<script type="text/javascript" crossorigin src="https://unpkg.com/react@16/umd/react.${process.env.NODE_ENV=='production'?'production.min':'development'}.js"></script>
               <script type="text/javascript" crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.${process.env.NODE_ENV=='production'?'production.min':'development'}.js"></script>`
         })
